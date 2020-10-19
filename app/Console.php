@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Console;
+namespace App;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
-class Kernel extends ConsoleKernel
+class Console extends ConsoleKernel
 {
     /**
      * The Artisan commands provided by your application.
@@ -36,7 +36,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__.'/KvSync/ConsoleCommands');
         Artisan::command('inspire', function () {
             $this->comment(Inspiring::quote());
         })->purpose('Display an inspiring quote');

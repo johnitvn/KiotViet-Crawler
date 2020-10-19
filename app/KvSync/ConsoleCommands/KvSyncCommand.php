@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\KvSync\ConsoleCommands;
 
 use Illuminate\Console\Command;
 use App\KvSync\SyncProcess\KvBankAccountSync;
@@ -47,9 +47,9 @@ class KvSyncCommand extends Command
         foreach ($KvSyncProcessesFiles as $filename) {
             if($filename != '.'&&$filename != '..'){
                 $className = '\App\KvSync\Processor\\'.str_replace('.php','',$filename);
-                Helper::log("Start Processor: $className");
+                Helper::log("Start Processor: $filename");
                 new $className();
-                Helper::log("End Processor: $className");
+                Helper::log("End Processor: $filename");
             }
         }
         Helper::log("End KiotViet Sync Process");
