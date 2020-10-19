@@ -1,1 +1,1 @@
-php artisan command:KvSync
+php artisan kvsync:all
