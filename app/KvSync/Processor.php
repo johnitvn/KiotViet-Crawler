@@ -92,6 +92,10 @@ abstract class Processor {
         DB::table($this->tableName)->where('id', $id)->delete();           
     }
 
+    protected function existOrDefault($array, $key, $default){
+        return array_key_exists($key, $array)?$array[$key]:$default;
+    }
+
     abstract protected function syncModifiedItems($datas);
 
     

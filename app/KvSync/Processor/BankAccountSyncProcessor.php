@@ -23,7 +23,7 @@ class BankAccountSyncProcessor extends Processor {
             $item->accountNumber =  $itemDataArray['accountNumber'];
             $item->retailerId =  $itemDataArray['retailerId'];
             $item->createdDate =  $itemDataArray['createdDate'];
-            $item->modifiedDate =  array_key_exists('modifiedDate', $itemDataArray)?$itemDataArray['modifiedDate']:$itemDataArray['createdDate'];
+            $item->modifiedDate =  $this->existOrDefault($itemDataArray,'modifiedDate',$itemDataArray['createdDate']);
             $item->save();
 
             $this->updateLastSyncTime($item->modifiedDate);

@@ -100,7 +100,7 @@ class Init extends Migration
             $this->setGeneralTableProperties($table);
         });
 
-        /* CREATE TABLE IF NOT EXISTS `Kv_Customer` (
+        /* CREATE TABLE IF NOT EXISTS `Kv_Customers` (
          `id` int(11) NOT NULL AUTO_INCREMENT,
          `code` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
          `name` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -119,23 +119,25 @@ class Init extends Migration
          `debt` decimal(10,0) NOT NULL,
          PRIMARY KEY (`id`)
        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci; */
-        Schema::create('Kv_Customer', function (Blueprint $table) {
+        Schema::create('Kv_Customers', function (Blueprint $table) {
            $table->id(); 
            $table->string("code");
            $table->string("name");
            $table->tinyInteger("gender"); 
-           $table->string("contactNumber");
+           $table->datetime("birthDate")->nullable();
+           $table->string("contactNumber")->nullable();
            $table->integer("retailerId");
            $table->integer("branchId");
-           $table->string("locationName");
-           $table->string("wardName");
-           $table->string("email");
+           $table->string("locationName")->nullable();
+           $table->string("wardName")->nullable();
+           $table->string("email")->nullable();
            $table->datetime("modifiedDate");
            $table->datetime("createdDate");
-           $table->integer("type");
-           $table->string("organization");
+           $table->integer("type")->nullable();
+           $table->string("organization")->nullable();
            $table->string("groups");
            $table->decimal("debt",10,0);
+           $this->setGeneralTableProperties($table);
         });
 
         /* CREATE TABLE IF NOT EXISTS `Kv_Invoice` (
@@ -216,7 +218,7 @@ class Init extends Migration
         Schema::drop('Kv_Bank_Accounts');
         Schema::drop('Kv_Branches');
         Schema::drop('Kv_Categories');
-        Schema::drop('Kv_Customer');
+        Schema::drop('Kv_Customers');
         Schema::drop('Kv_Invoice');
         Schema::drop('Kv_Invoice_Detail');
         Schema::drop('Kv_Order');
